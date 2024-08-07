@@ -2,22 +2,18 @@
 
 class PlansController < ApplicationController
   before_action :set_plan, only: %i[show edit update destroy]
-
-  before_action :authenticate_user!, only: %i[index show update edit create new destroy]
+  before_action :authenticate_user!
 
   def index
     @plans = Plan.all
   end
 
   def new
-    @plan = Plan.new
-    @users = User.all
+    @plan = current_user.plans.new
   end
 
   def create
-    @plan = Plan.new(plan_params)
-
-    @users = User.all
+    @plan = current_user.plans.new(plan_params)
 
     if @plan.save
       redirect_to @plan, notice: 'Plan was successfully created.'
@@ -28,15 +24,10 @@ class PlansController < ApplicationController
 
   def show; end
 
-  def edit
-    @users = User.all
-  end
+  def edit; end
 
   def update
-    @users = User.all
-
     if @plan.update(plan_params)
-
       redirect_to @plan, notice: 'Plan was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
@@ -56,6 +47,6 @@ class PlansController < ApplicationController
   end
 
   def set_plan
-    @plan = Plan.find(params[:id])
+    @plan = current_user.plans.find(params[:id])
   end
 end
