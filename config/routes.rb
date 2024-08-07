@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   resources :plans do
     namespace :database_schema do
-      resources :models
+      resources :models do
+        resources :columns, except: [:index]
+      end
     end
   end
 end

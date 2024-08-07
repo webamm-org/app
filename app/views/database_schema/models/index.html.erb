@@ -28,7 +28,11 @@
     </button>
     <div id="collapse-model-<%= model.id %>" class="hs-accordion-content w-full overflow-hidden <%= 'hidden' if params[:expand] != model.id.to_s %> transition-[height] duration-300" role="region" aria-labelledby="hs-bordered-heading-one">
       <div class="pb-4 px-5">
-        <%= render partial: 'database_schema/models/empty_columns' %>
+        <% if model.columns.empty? %>
+          <%= render 'database_schema/models/empty_columns', plan: @plan, model: model %>
+        <% else %>
+          <%= render 'database_schema/models/columns', plan: @plan, model: model, columns: model.columns %>
+        <% end %>
       </div>
       </div>
     </div>

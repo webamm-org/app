@@ -3,6 +3,8 @@ class DatabaseSchema::Model < ApplicationRecord
 
   belongs_to :plan
 
+  has_many :columns, class_name: 'DatabaseSchema::Column', foreign_key: 'database_schema_model_id'
+
   validates :name, presence: true, uniqueness: { scope: :plan_id }
 
   normalizes :name, with: -> name { name.to_s.titleize.delete(' ').camelize }
