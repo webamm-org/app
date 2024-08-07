@@ -1,6 +1,6 @@
 class CreateDatabaseSchemaModels < ActiveRecord::Migration[7.1]
   def change
-    create_table :database_schema_models do |t|
+    create_table :database_schema_models, id: :uuid do |t|
       t.string :name, null: false
       t.references :plan, null: false, foreign_key: true, type: :uuid
       t.text :description

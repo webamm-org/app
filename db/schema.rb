@@ -10,12 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_07_145526) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_07_154149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "database_schema_models", force: :cascade do |t|
+  create_table "database_schema_columns", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "database_schema_model_id", null: false
+    t.string "name", null: false
+    t.integer "field_type", default: 0, null: false
+    t.boolean "can_be_null", default: false, null: false
+    t.string "default_value"
+    t.jsonb "options", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["database_schema_model_id", "name"], name: "idx_on_database_schema_model_id_name_43628ba657", unique: true
+    t.index ["database_schema_model_id"], name: "index_database_schema_columns_on_database_schema_model_id"
+  end
+
+  create_table "database_schema_models", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.uuid "plan_id", null: false
     t.text "description"
@@ -59,6 +72,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_07_145526) do
     t.index ["reset_password_token"], name: "idx_users_reset_password_token", unique: true
   end
 
+  add_foreign_key "database_schema_columns", "database_schema_models"
   add_foreign_key "database_schema_models", "plans"
   add_foreign_key "plans", "users"
 end
