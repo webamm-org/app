@@ -38,3 +38,5 @@
 !/app/assets/builds/.keep
 /log
 /tmp
+
+/node_modules
