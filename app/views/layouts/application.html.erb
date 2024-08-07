@@ -12,40 +12,8 @@
   </head>
 
   <body>
-    <nav class="bg-white border-gray-200 dark:bg-gray-900">
-      <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
-          <a href="http://localhost:3000" class="flex items-center space-x-3 rtl:space-x-reverse">
-              <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Gaia</span>
-          </a>
-          <div class="flex items-center space-x-6 rtl:space-x-reverse">
-            
-              
-                <% if user_signed_in? %>
-                  <%= button_to("Sign out user", destroy_user_session_path, form: { data: { turbo: false }}, method: :delete, class: 'text-sm text-blue-600 dark:text-blue-500 hover:underline') %>
-              
-            
-            <% else %>
-              
-              <%= link_to("Sign in user", new_user_session_path, class: 'text-sm text-blue-600 dark:text-blue-500 hover:underline') %>
-              
-            <% end %>
-          </div>
-      </div>
-    </nav>
-    <nav class="bg-gray-50 dark:bg-gray-700">
-      <div class="max-w-screen-xl px-4 py-3 mx-auto">
-        <div class="flex items-center">
-          <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
-            
-              <li>
-                <%= link_to 'Plans', :plans, class: 'text-gray-900 dark:text-white hover:underline' %>
-              </li>
-            
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 antialiased">
+    <%= render 'partials/navbar', plan: @plan %>
+    <div class="max-w-[85rem] w-full mx-auto px-4 sm:px-6 lg:px-8 antialiased">
       <% if notice.present? %>
         <div class="rounded-md bg-blue-50 p-4 mt-4">
           <div class="flex">
@@ -76,7 +44,7 @@
           </div>
         </div>
       <% end %>
-      <div class="mx-auto max-w-6xl mt-10">
+      <div class="max-w-[85rem] w-full mx-auto mt-10">
         <%= yield %>
       </div>
     </div>
