@@ -41,7 +41,9 @@ module DatabaseSchema
     private
 
     def column_params
-      params.require(:database_schema_column).permit(:name, :field_type, :can_be_null, :default_value)
+      params.require(:database_schema_column).permit(:name, :field_type, :can_be_null, :default_value, options: [:authorization, { enums: []}]) do |whitelisted|
+        whitelisted[:options] = {} if whitelisted[:options].blank?
+      end
     end
 
     def set_plan
