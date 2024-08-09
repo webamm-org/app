@@ -1,4 +1,4 @@
-<%= form_with(model: [plan, model], class: "max-w-4xl mx-auto") do |form| %>
+<%= form_with(model: [plan, :database_schema, model], class: "max-w-4xl mx-auto") do |form| %>
   <% if model.errors.any? %>
     <div class="rounded-md bg-red-50 p-4 mb-4">
       <div class="flex">

@@ -7,5 +7,5 @@ class DatabaseSchema::Column < ApplicationRecord
 
   normalizes :name, with: -> name { name.to_s.underscore }
 
-  enum field_type: { string: 0, integer: 1, boolean: 2, text: 3 }
+  enum field_type: { string: 0, integer: 1, boolean: 2, text: 3, float: 4, datetime: 5, time: 6, date: 7 }
 end

@@ -1,4 +1,4 @@
-<%= form_with(model: [plan, model, column], url: plan_database_schema_model_columns_path(plan, model), class: "max-w-4xl mx-auto") do |form| %>
+<%= form_with(model: [plan, :database_schema, model, column], data: { turbo: false }, class: "max-w-4xl mx-auto") do |form| %>
   <% if column.errors.any? %>
     <div class="rounded-md bg-red-50 p-4 mb-4">
       <div class="flex">
@@ -27,6 +27,14 @@
   <div class="my-5">
     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type:</label>
     <%= form.select :field_type, DatabaseSchema::Column.field_types.keys, {}, class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light' %>
+  </div>
+  <div class="my-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default value:</label>
+    <%= form.text_field :default_value, class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light' %>
+  </div>
+  <div class="mt-5 flex my-5">
+    <%= form.check_box :can_be_null, class: 'shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800' %>
+    <label for="af-submit-application-privacy-check" class="text-sm ms-2">Can be null in database</label>
   </div>
   <%= form.submit "Submit", class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>
 <% end %>
