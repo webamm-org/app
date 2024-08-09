@@ -45,7 +45,9 @@ module DatabaseSchema
     private
 
     def model_params
-      params.require(:database_schema_model).permit(:name)
+      params.require(:database_schema_model).permit(:name, options: [:use_uuid]).tap do |whitelisted|
+        whitelisted[:options] = {} if whitelisted[:options].blank?
+      end
     end
 
     def set_plan
