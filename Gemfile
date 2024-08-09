@@ -89,3 +89,5 @@ gem 'letter_opener_web', '~> 3.0', group: :development
 gem 'rubocop', '~> 1.65'
 
 gem "jsbundling-rails", "~> 1.3"
+
+gem "anthropic", "~> 0.3.0"

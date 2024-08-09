@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PlansController < ApplicationController
-  before_action :set_plan, only: %i[show edit update destroy start progress]
+  before_action :set_plan, only: %i[show edit update destroy start progress generate]
   before_action :authenticate_user!
 
   def index
@@ -41,7 +41,7 @@ class PlansController < ApplicationController
   end
 
   def start
-    if @plan.started
+    if @plan.started || !current_user.ai_enabled
       redirect_to plan_database_schema_database_schema_models_path(@plan)
     end
   end
@@ -50,6 +50,13 @@ class PlansController < ApplicationController
     @plan.update!(started: true)
 
     redirect_to plan_database_schema_database_schema_models_path(@plan)
+  end
+
+  def generate
+    ::Plans::BootstrapWithAi.new(@plan, params[:prompt]).call
+    @plan.update!(started: true)
+
+    redirect_to plan_database_schema_database_schema_models_path(@plan), notice: 'Plan was successfully generated.'
   end
 
   private

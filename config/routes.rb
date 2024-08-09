@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       get :start
       post :progress
+      post :generate
     end
 
     namespace :database_schema do
