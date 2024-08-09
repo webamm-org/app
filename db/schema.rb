@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_09_154457) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_09_165045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -70,6 +70,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_154457) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "ai_enabled", default: false
+    t.integer "usd_rate", default: 0
+    t.boolean "started", default: false
     t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
@@ -93,6 +96,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_154457) do
     t.string "invited_by_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "ai_enabled", default: false
     t.index ["email"], name: "idx_users_email", unique: true
     t.index ["invitation_token"], name: "idx_users_invitation_token", unique: true
     t.index ["reset_password_token"], name: "idx_users_reset_password_token", unique: true

@@ -38,6 +38,13 @@
                     </span>
                   </div>
                 </th>
+                <th scope="col" class="px-6 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+                      Estimated savings
+                    </span>
+                  </div>
+                </th>
                 <th scope="col" class="px-6 py-3 text-end"></th>
               </tr>
             </thead>
@@ -48,6 +55,11 @@
                   <td class="size-px whitespace-nowrap">
                     <span class="block px-6 py-2">
                       <span class="text-sm text-gray-600 dark:text-neutral-400"><%= plan.name %></span>
+                    </span>
+                  </td>
+                  <td class="size-px whitespace-nowrap">
+                    <span class="block px-6 py-2">
+                      <span class="text-sm text-gray-600 dark:text-neutral-400"><%= plan.estimated_savings %></span>
                     </span>
                   </td>
                   <td class="size-px whitespace-nowrap">

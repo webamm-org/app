@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   root 'plans#index'
 
   resources :plans do
+    member do
+      get :start
+      post :progress
+    end
+
     namespace :database_schema do
       resources :database_schema_models, path: 'models' do
         resources :database_schema_columns, path: 'columns', except: [:index]
