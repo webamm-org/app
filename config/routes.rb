@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     namespace :database_schema do
       resources :database_schema_models, path: 'models' do
         resources :database_schema_columns, path: 'columns', except: [:index]
+        resources :database_schema_indices, path: 'indices', except: [:index, :update, :edit]
       end
     end
   end

@@ -36,6 +36,8 @@
         <% else %>
           <%= render 'database_schema/database_schema_models/columns', plan: @plan, model: model, columns: model.columns %>
         <% end %>
+
+        <%= render 'database_schema/database_schema_models/indices', plan: @plan, model: model, indices: model.indices %>
       </div>
       </div>
     </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_07_154149) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_09_143933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -26,6 +26,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_07_154149) do
     t.datetime "updated_at", null: false
     t.index ["database_schema_model_id", "name"], name: "idx_on_database_schema_model_id_name_43628ba657", unique: true
     t.index ["database_schema_model_id"], name: "index_database_schema_columns_on_database_schema_model_id"
+  end
+
+  create_table "database_schema_columns_indices", id: false, force: :cascade do |t|
+    t.uuid "database_schema_index_id", null: false
+    t.uuid "database_schema_column_id", null: false
+    t.index ["database_schema_column_id"], name: "idx_on_database_schema_column_id_39f5b9518e"
+    t.index ["database_schema_index_id"], name: "idx_on_database_schema_index_id_de6141deb6"
+  end
+
+  create_table "database_schema_indices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "database_schema_model_id", null: false
+    t.boolean "is_unique", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["database_schema_model_id"], name: "index_database_schema_indices_on_database_schema_model_id"
   end
 
   create_table "database_schema_models", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -73,6 +88,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_07_154149) do
   end
 
   add_foreign_key "database_schema_columns", "database_schema_models"
+  add_foreign_key "database_schema_columns_indices", "database_schema_columns"
+  add_foreign_key "database_schema_columns_indices", "database_schema_indices"
+  add_foreign_key "database_schema_indices", "database_schema_models"
   add_foreign_key "database_schema_models", "plans"
   add_foreign_key "plans", "users"
 end
