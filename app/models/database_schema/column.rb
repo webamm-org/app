@@ -2,7 +2,7 @@ class DatabaseSchema::Column < ApplicationRecord
   self.table_name = 'database_schema_columns'
 
   belongs_to :model, class_name: 'DatabaseSchema::Model', foreign_key: 'database_schema_model_id'
-  has_and_belongs_to_many :database_schema_indices, class_name: 'DatabaseSchema::Index', dependent: :destroy
+  has_and_belongs_to_many :indices, class_name: 'DatabaseSchema::Index', dependent: :destroy, foreign_key: 'database_schema_column_id', association_foreign_key: 'database_schema_index_id'
 
   validates :name, presence: true, uniqueness: { scope: :database_schema_model_id }
 

@@ -34,7 +34,15 @@ module DatabaseSchema
 
     def destroy
       @column = @model.columns.find(params[:id])
-      @column.destroy
+
+      ActiveRecord::Base.transaction do
+        @column.indices.find_each do |index|
+          index.destroy!
+        end
+
+        @column.destroy!
+      end
+
       redirect_to plan_database_schema_database_schema_models_path(@plan, expand: @model.id), notice: 'Column was successfully removed.'
     end
     

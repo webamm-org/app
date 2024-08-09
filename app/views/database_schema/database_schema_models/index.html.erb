@@ -31,12 +31,7 @@
     <div id="collapse-model-<%= model.id %>" class="hs-accordion-content w-full overflow-hidden <%= 'hidden' if params[:expand] != model.id.to_s %> transition-[height] duration-300" role="region" aria-labelledby="hs-bordered-heading-one">
       <div class="pb-4 px-5">
         <%= render 'database_schema/database_schema_models/buttons', plan: @plan, model: model %>
-        <% if model.columns.empty? %>
-          <%= render 'database_schema/database_schema_models/empty_columns', plan: @plan, model: model %>
-        <% else %>
-          <%= render 'database_schema/database_schema_models/columns', plan: @plan, model: model, columns: model.columns %>
-        <% end %>
-
+        <%= render 'database_schema/database_schema_models/columns', plan: @plan, model: model, columns: model.columns %>
         <%= render 'database_schema/database_schema_models/indices', plan: @plan, model: model, indices: model.indices %>
       </div>
       </div>
