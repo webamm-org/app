@@ -8,3 +8,6 @@ application.register('column', ColumnController)
 
 import IndexController from './index_controller'
 application.register('index', IndexController)
+
+import AssociationController from './association_controller'
+application.register('association', AssociationController)

@@ -25,7 +25,7 @@
   <div class="hs-accordion active bg-white border -mt-px first:rounded-t-lg last:rounded-b-lg dark:bg-neutral-800 dark:border-neutral-700" id="hs-bordered-heading-one">
     <button data-accordion-tab-param="collapse-model-<%= model.id %>" data-action="click->accordion#toggleTag" class="hs-accordion-toggle hs-accordion-active:text-blue-600 inline-flex items-center gap-x-3 w-full font-semibold text-start text-gray-800 py-4 px-5 hover:text-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:hs-accordion-active:text-blue-500 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:outline-none dark:focus:text-neutral-400" aria-expanded="true" aria-controls="hs-basic-bordered-collapse-one">
       <span class='min-h-[30px] inline-flex justify-center items-center p-2 px-4 bg-white border border-gray-200 font-mono text-sm text-gray-800 rounded-md shadow-[0px_2px_0px_0px_rgba(0,0,0,0.08)] dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 dark:shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)]'>
-        <%= model.name %> <% if model.options.key?('use_uuid') %><span class="ml-2 inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-md text-xs font-medium border border-gray-200 bg-yellow-100 text-yellow-800 text-gray-800 shadow-sm">UUID</span><% end %>
+        <%= model.name %> <% if model.options.key?('use_uuid') %><span class="ml-2 inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-md text-xs font-medium border border-gray-200 bg-blue-100 text-blue-800 text-gray-800 shadow-sm">UUID</span><% end %> <% if model.options.key?('habtm') %><span class="ml-2 inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-md text-xs font-medium border border-gray-200 bg-blue-100 text-blue-800 text-gray-800 shadow-sm">HABTM</span><% end %>
       </span>
     </button>
     <div id="collapse-model-<%= model.id %>" class="hs-accordion-content w-full overflow-hidden <%= 'hidden' if params[:expand] != model.id.to_s %> transition-[height] duration-300" role="region" aria-labelledby="hs-bordered-heading-one">
@@ -33,6 +33,7 @@
         <%= render 'database_schema/database_schema_models/buttons', plan: @plan, model: model %>
         <%= render 'database_schema/database_schema_models/columns', plan: @plan, model: model, columns: model.columns %>
         <%= render 'database_schema/database_schema_models/indices', plan: @plan, model: model, indices: model.indices %>
+        <%= render 'database_schema/database_schema_models/associations', plan: @plan, model: model, associations: model.associations %>
       </div>
       </div>
     </div>

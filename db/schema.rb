@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_09_143933) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_09_154457) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "database_schema_associations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "connection_type", default: 0, null: false
+    t.jsonb "connection_options", default: {}, null: false
+    t.uuid "source_database_schema_model_id", null: false
+    t.uuid "destination_database_schema_model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_database_schema_model_id"], name: "idx_on_destination_database_schema_model_id_0d16a03465"
+    t.index ["source_database_schema_model_id"], name: "idx_on_source_database_schema_model_id_6f0519a3ff"
+  end
 
   create_table "database_schema_columns", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "database_schema_model_id", null: false
@@ -87,6 +98,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_143933) do
     t.index ["reset_password_token"], name: "idx_users_reset_password_token", unique: true
   end
 
+  add_foreign_key "database_schema_associations", "database_schema_models", column: "destination_database_schema_model_id"
+  add_foreign_key "database_schema_associations", "database_schema_models", column: "source_database_schema_model_id"
   add_foreign_key "database_schema_columns", "database_schema_models"
   add_foreign_key "database_schema_columns_indices", "database_schema_columns"
   add_foreign_key "database_schema_columns_indices", "database_schema_indices"
