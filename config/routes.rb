@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
   root 'plans#index'
 
+  namespace :api do
+    namespace :v1 do
+      resources :plans, only: [:show]
+    end
+  end
+
   resources :plans do
     member do
       get :start

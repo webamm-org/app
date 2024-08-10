@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 ruby '3.2.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.1.3', '>= 7.1.3.4'
+gem 'rails', '7.2'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -91,3 +91,6 @@ gem 'rubocop', '~> 1.65'
 gem "jsbundling-rails", "~> 1.3"
 
 gem "anthropic", "~> 0.3.0"
+
+gem 'waml_to_rails', path: '/Users/paweldabrowski/development/waml/waml_to_rails'
+gem 'pry'

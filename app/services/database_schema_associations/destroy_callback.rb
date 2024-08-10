@@ -20,10 +20,6 @@ module DatabaseSchemaAssociations
               assoc.destroy!
             end
         end
-      elsif database_schema_association.parent_children_assoc?
-        source_database_schema_model = database_schema_association.source_database_schema_model
-        parent_id_column = source_database_schema_model.columns.find_by!(name: 'parent_id')
-        parent_id_column.destroy!
       end
     end
   end

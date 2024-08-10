@@ -44,14 +44,6 @@ module DatabaseSchemaAssociations
         )
 
         {}
-      elsif database_schema_association.parent_children_assoc?
-        database_schema_association.source_database_schema_model.columns.create!(
-          name: 'parent_id',
-          field_type: 'integer',
-          options: {
-            'parent_children_column' => true
-          }
-        )
       end
     end
   end
