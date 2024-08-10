@@ -37,4 +37,8 @@ class Plan < ApplicationRecord
 
     "#{summary} (~#{cost} USD)"
   end
+
+  def to_waml
+    ::Plans::WamlExporter.call(self)
+  end
 end
