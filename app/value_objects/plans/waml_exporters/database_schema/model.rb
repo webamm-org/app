@@ -27,6 +27,10 @@ module Plans
 
             relationships << association_definition
           end
+
+          if model.options.key?('use_uuid')
+            model_definition['options']['use_uuid'] = true
+          end
           
           if model.options.key?('habtm')
             model_definition['options']['habtm'] = true
