@@ -9,7 +9,8 @@ module Plans
           model_definition = {
             'table' => table_name,
             'columns' => [],
-            'indices' => []
+            'indices' => [],
+            'options' => {}
           }
 
           model.indices.find_each do |index|
@@ -25,6 +26,14 @@ module Plans
             next if association_definition.nil?
 
             relationships << association_definition
+          end
+          
+          if model.options.key?('habtm')
+            model_definition['options']['habtm'] = true
+            model_definition['options']['habtm_tables'] = [
+              model.plan.db_models.find(model.options['source_model_id']).name.underscore.pluralize,
+              model.plan.db_models.find(model.options['destination_model_id']).name.underscore.pluralize
+            ]
           end
 
           [model_definition, relationships]

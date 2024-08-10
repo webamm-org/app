@@ -35,7 +35,17 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    @plan.destroy!
+    ::Plan.transaction do
+      ::DatabaseSchema::Association.where(source_database_schema_model_id: @plan.db_models.pluck(:id)).find_each do |assoc|
+        assoc.destroy!
+      end
+
+      ::DatabaseSchema::Association.where(destination_database_schema_model_id: @plan.db_models.pluck(:id)).find_each do |assoc|
+        assoc.destroy!
+      end
+
+      @plan.destroy!
+    end
 
     redirect_to :plans, notice: 'Plan was successfully destroyed.'
   end

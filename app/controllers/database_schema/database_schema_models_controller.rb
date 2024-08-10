@@ -37,7 +37,29 @@ module DatabaseSchema
 
     def destroy
       @model = @plan.db_models.find(params[:id])
-      @model.destroy
+      
+      ActiveRecord::Base.transaction do
+        if @model.options.fetch('habtm', false)
+          source_model = @model.plan.db_models.find(@model.options.fetch('source_model_id'))
+          destination_model = @model.plan.db_models.find(@model.options.fetch('destination_model_id'))
+  
+          DatabaseSchema::Association.where(
+            source_database_schema_model_id: source_model.id,
+            destination_database_schema_model_id: destination_model.id,
+            connection_type: 'has_many_and_belongs_to_many_assoc').each do |assoc|
+              assoc.destroy!
+            end
+  
+          DatabaseSchema::Association.where(
+            source_database_schema_model_id: destination_model.id,
+            destination_database_schema_model_id: source_model.id,
+            connection_type: 'has_many_and_belongs_to_many_assoc').each do |assoc|
+              assoc.destroy!
+            end
+        end
+  
+        @model.destroy!
+      end
 
       redirect_to plan_database_schema_database_schema_models_path(@plan), notice: 'Model was successfully deleted.'
     end
