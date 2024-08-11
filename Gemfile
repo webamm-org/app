@@ -92,5 +92,6 @@ gem "jsbundling-rails", "~> 1.3"
 
 gem "anthropic", "~> 0.3.0"
 
-gem 'waml_to_rails', path: '/Users/paweldabrowski/development/waml/waml_to_rails'
-gem 'pry'
+source "https://rubygems.pkg.github.com/rubypowerhouse" do
+  gem "waml_to_rails", "0.0.3"
+end

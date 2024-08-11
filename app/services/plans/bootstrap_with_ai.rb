@@ -18,7 +18,7 @@ module Plans
             end
           end
 
-          model_attrs['indices'].each do |index_attrs|
+          model_attrs.fetch('indices', []).each do |index_attrs|
             column_ids = index_attrs['columns'].map { |column_name| model.columns.find_by!(name: column_name).id }
             model.indices.create!(is_unique: index_attrs['unique'], column_ids: column_ids)
           end
