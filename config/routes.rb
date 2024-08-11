@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   devise_for :users
-  root 'plans#index'
+  root 'home#index'
+
+  resources :leads, path: 'subscribers', only: [:create, :new, :index]
 
   namespace :api do
     namespace :v1 do

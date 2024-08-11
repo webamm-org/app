@@ -12,7 +12,9 @@
   </head>
 
   <body>
-    <%= render 'partials/navbar', plan: @plan %>
+    <% unless %w[home leads].include?(controller_name) %>
+      <%= render 'partials/navbar', plan: @plan %>
+    <% end %>
     
     <div class="max-w-[85rem] w-full mx-auto px-4 sm:px-6 lg:px-8 antialiased">
       <% if notice.present? %>
