@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_11_073022) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_11_112430) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "authentications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "database_schema_model_id", null: false
+    t.uuid "plan_id", null: false
+    t.jsonb "options", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["database_schema_model_id"], name: "index_authentications_on_database_schema_model_id"
+    t.index ["plan_id"], name: "index_authentications_on_plan_id"
+  end
 
   create_table "database_schema_associations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "connection_type", default: 0, null: false
@@ -110,6 +120,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_11_073022) do
     t.index ["reset_password_token"], name: "idx_users_reset_password_token", unique: true
   end
 
+  add_foreign_key "authentications", "database_schema_models"
+  add_foreign_key "authentications", "plans"
   add_foreign_key "database_schema_associations", "database_schema_models", column: "destination_database_schema_model_id"
   add_foreign_key "database_schema_associations", "database_schema_models", column: "source_database_schema_model_id"
   add_foreign_key "database_schema_columns", "database_schema_models"

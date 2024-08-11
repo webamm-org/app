@@ -4,7 +4,7 @@ module DatabaseSchema
     before_action :set_plan
 
     def index
-      @models = @plan.db_models.includes(:columns, indices: :columns, associations: :destination_database_schema_model).order(:name)
+      @models = @plan.db_models.includes(:columns, :authentication, indices: :columns, associations: :destination_database_schema_model).order(:name)
     end
 
     def new

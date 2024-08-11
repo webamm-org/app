@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       post :generate
     end
 
+    resources :authentications, except: [:show]
+
     namespace :database_schema do
       resources :database_schema_models, path: 'models' do
         resources :database_schema_columns, path: 'columns', except: [:index]

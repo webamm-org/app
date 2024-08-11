@@ -6,15 +6,25 @@ class Plan < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :user_id }
 
   has_many :db_models, dependent: :destroy, class_name: 'DatabaseSchema::Model'
+  has_many :authentications
 
   def estimated_savings
     minutes_of_development = 0
 
-    db_models.find_each do |db_model|
+    db_models.includes(:authentication).find_each do |db_model|
       minutes_of_development += 5
       minutes_of_development += db_model.columns.count * 2
       minutes_of_development += db_model.indices.count * 2
       minutes_of_development += db_model.associations.count * 2
+
+      if db_model.authentication.present?
+        minutes_of_development += 20
+
+        minutes_of_development += 30 if db_model.authentication.options.key?('invitations')
+        minutes_of_development += 30 if db_model.authentication.options.key?('allow_sign_up')
+        minutes_of_development += 120 if db_model.authentication.options.key?('online_indication')
+        minutes_of_development += 120 if db_model.authentication.options.key?('two_factor_authentication')
+      end
     end
 
     minutes_of_development += minutes_of_development * 0.2 # 20% for distractions

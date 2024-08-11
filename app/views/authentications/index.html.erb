@@ -1,0 +1,94 @@
+<div class="mb-5 pb-5 flex justify-between items-center border-b border-gray-200 dark:border-neutral-700">
+  <div>
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-neutral-200">Authentications</h2>
+  </div>
+  <!-- Col -->
+
+  <div class="inline-flex gap-x-2">
+    <%= link_to(new_plan_authentication_path(@plan), class: 'py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800') do %>
+    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      New authentication
+    <% end %>
+  </div>
+  <!-- Col -->
+</div>
+<!-- Table Section -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+  <!-- Card -->
+  <div class="flex flex-col">
+    <div class="-m-1.5 overflow-x-auto">
+      <div class="p-1.5 min-w-full inline-block align-middle">
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-neutral-900 dark:border-neutral-700">
+
+
+
+          <!-- Table -->
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+            <thead class="bg-gray-50 dark:bg-neutral-900">
+              <tr>
+
+                <th scope="col" class="px-6 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+                      Model
+                    </span>
+                  </div>
+                </th>
+
+                <th scope="col" class="px-6 py-3 text-start">
+                  <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+                      Features
+                    </span>
+                  </div>
+                </th>
+
+      
+
+                <th scope="col" class="px-6 py-3 text-end"></th>
+                <th scope="col" class="px-6 py-3 text-end"></th>
+              </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+              <% @authentications.each do |authentication| %>
+                <tr class="bg-white hover:bg-gray-50 dark:bg-neutral-900 dark:hover:bg-neutral-800">
+                  <td class="size-px whitespace-nowrap">
+    
+                      <span class="block px-6 py-2">
+                        <span class="text-sm text-gray-600 dark:text-neutral-400"><%= authentication.model.name %></span>
+                      </span>
+
+                  </td>
+                  <td class="size-px whitespace-nowrap">
+
+                      <span class="block px-6 py-2">
+                        <span class="text-sm text-gray-600 dark:text-neutral-400"><%= authentication.features %></span>
+                      </span>
+
+                  </td>
+                  <td class="size-px whitespace-nowrap">
+                      <span class="px-6 py-1.5">
+                        <%= link_to('Edit', edit_plan_authentication_path(@plan, authentication), class: 'py-1 px-2 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800') %>
+                      </span>
+                  </td>
+                  <td class="size-px whitespace-nowrap">
+
+                      <span class="px-6 py-1.5">
+                        <%= button_to "Remove", plan_authentication_path(@plan, authentication), method: :delete, class: "py-1 px-2 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800" %>
+                      </span>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <!-- End Table -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Card -->
+</div>
+<!-- End Table Section -->
+
