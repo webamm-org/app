@@ -21,6 +21,9 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <% if Rails.env.production? %>
+      <script defer data-domain="railsplan.com" src="https://plausible.io/js/script.js"></script>
+    <% end %>
   </head>
 
   <body>
