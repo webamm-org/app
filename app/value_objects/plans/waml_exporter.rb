@@ -12,13 +12,21 @@ module Plans
         db_definition['relationships'] |= relationships
       end
 
+      authentications = plan.authentications.map do |authentication|
+        {
+          'table' => authentication.model.name.underscore.pluralize,
+          'features' => authentication.options.keys
+        }
+      end
+
       {
         'database' => {
           # TODO: reflect other database types
           'engine' => 'postgresql',
           'relationships' => db_definition['relationships'],
           'schema' => db_definition['schema']
-        }
+        },
+        'authentication' => authentications
       }
     end
   end
