@@ -93,7 +93,7 @@ gem "jsbundling-rails", "~> 1.3"
 gem "anthropic", "~> 0.3.0"
 
 source "https://rubygems.pkg.github.com/rubypowerhouse" do
-  gem "waml_to_rails", "0.0.5"
+  gem "waml_to_rails", "0.0.6"
 end
 
 gem 'rack-attack'
