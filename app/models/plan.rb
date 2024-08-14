@@ -7,6 +7,7 @@ class Plan < ApplicationRecord
 
   has_many :db_models, dependent: :destroy, class_name: 'DatabaseSchema::Model'
   has_many :authentications
+  has_many :prompts_histories, dependent: :destroy
 
   def estimated_savings
     minutes_of_development = 0
