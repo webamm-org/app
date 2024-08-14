@@ -97,3 +97,5 @@ source "https://rubygems.pkg.github.com/rubypowerhouse" do
 end
 
 gem 'rack-attack'
+
+gem "ruby-openai", "~> 7.1"
