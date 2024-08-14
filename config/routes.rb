@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get :start
       post :progress
       post :generate
+      get :generate_app
     end
 
     resources :authentications, except: [:show]

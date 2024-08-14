@@ -11,3 +11,6 @@ application.register('index', IndexController)
 
 import AssociationController from './association_controller'
 application.register('association', AssociationController)
+
+import MenuController from './menu_controller'
+application.register('menu', MenuController)

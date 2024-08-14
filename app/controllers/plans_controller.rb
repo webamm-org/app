@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PlansController < ApplicationController
-  before_action :set_plan, only: %i[show edit update destroy start progress generate]
+  before_action :set_plan, only: %i[show edit update destroy start progress generate generate_app]
   before_action :authenticate_user!
 
   def index
@@ -67,6 +67,10 @@ class PlansController < ApplicationController
     @plan.update!(started: true)
 
     redirect_to plan_database_schema_database_schema_models_path(@plan), notice: 'Plan was successfully generated.'
+  end
+
+  def generate_app
+  
   end
 
   private

@@ -1,0 +1,46 @@
+<div class="mb-5 pb-5 flex justify-between items-center border-b border-gray-200 dark:border-neutral-700">
+  <div>
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-neutral-200">Generate application</h2>
+  </div>
+  <!-- Col -->
+</div>
+<p>Start with installing the latest gem:</p>
+<code
+    class="w-full text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6 mt-4 mb-4">
+    <span class="flex gap-4">
+        <span class="shrink-0 text-gray-500">
+            $
+        </span>
+
+        <span class="flex-1">
+            <span>
+                gem install
+            </span>
+
+            <span class="text-yellow-500">
+                rails_plan -v '0.0.8'
+            </span>
+        </span>
+    </span>
+    
+</code>
+<p>Generate the app files:</p>
+<code
+    class="w-full text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6 mt-4">
+    <span class="flex gap-4">
+        <span class="shrink-0 text-gray-500">
+            $
+        </span>
+
+        <span class="flex-1">
+            <span>
+                rplan build
+            </span>
+
+            <span class="text-yellow-500">
+                <%= @plan.id %>
+            </span>
+        </span>
+    </span>
+    
+</code>
