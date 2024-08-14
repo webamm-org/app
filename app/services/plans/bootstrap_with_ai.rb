@@ -51,6 +51,7 @@ module Plans
           waml_application.authentication.each do |schema_authentication|
             @plan.authentications.create!(
               options: schema_authentication.features.map { |f| [f, 'on'] }.to_h,
+              name: schema_authentication.table,
               database_schema_model_id: @plan.db_models.find_or_create_by!(name: schema_authentication.table.classify).id
             )
           end

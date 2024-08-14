@@ -1,8 +1,15 @@
 require 'json'
+require 'gemini-ai'
 
-class GenerateWamlWithClaude
+class GenerateWamlWithGemini
   def self.call(prompt)
-    client = ::Anthropic::Client.new(access_token: ENV['ANTHROPIC_API_KEY'])
+    client = ::Gemini.new(
+      credentials: {
+        service: 'generative-language-api',
+        api_key: ENV['GEMINI_API_KEY']
+      },
+      options: { model: 'gemini-pro', server_sent_events: false }
+    )
 
     system_prompt = <<~SYSTEM_PROMPT
       You are a helpful assistant that based on provided application description generates JSON representation of the application. Example of the JSON representation:
@@ -78,17 +85,10 @@ class GenerateWamlWithClaude
       Based on the provided application description, generate JSON representation of the application. Assume the most popular database architecture for the application. Remember about foreign keys and indexes. Reply only with JSON representation of the application.
     SYSTEM_PROMPT
 
-    response = client.messages(
-      parameters: {
-        model: 'claude-3-haiku-20240307',
-        system: system_prompt,
-        messages: [
-          { 'role': 'user', 'content': prompt + "\n\n Reply only with JSON representation of the application." },
-        ],
-        max_tokens: 2_000
-      }
-    )
+    result = client.generate_content({
+      contents: { role: 'user', parts: { text: system_prompt } }
+    })
 
-    JSON.parse(response['content'].first['text'])
+    JSON.parse(result['candidates'].first['content']['parts'].first['text'])
   end
 end
