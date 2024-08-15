@@ -402,10 +402,13 @@ GEM
 GEM
   remote: https://rubygems.pkg.github.com/rubypowerhouse/
   specs:
-    waml_to_rails (0.0.10)
+    waml (0.0.1)
+      dry-struct (= 1.6.0)
+    waml_to_rails (0.1.0)
       activesupport (= 7.2)
       dry-struct (= 1.6.0)
       rufo (= 0.18.0)
+      waml (= 0.0.1)
 
 PLATFORMS
   x86_64-darwin-21
@@ -441,7 +444,8 @@ DEPENDENCIES
   tailwindcss-rails
   turbo-rails
   tzinfo-data
-  waml_to_rails (= 0.0.10)!
+  waml (= 0.0.1)!
+  waml_to_rails (= 0.1.0)!
   web-console
 
 RUBY VERSION

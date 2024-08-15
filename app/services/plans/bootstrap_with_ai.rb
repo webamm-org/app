@@ -10,7 +10,7 @@ module Plans
 
     def call
       begin
-        waml_application = ::WamlToRails::Definition.new(waml_json.deep_symbolize_keys)
+        waml_application = ::Waml::Definition.new(waml_json.deep_symbolize_keys)
 
         ActiveRecord::Base.transaction do
           # Create models, columns, and indices
