@@ -14,3 +14,6 @@ application.register('association', AssociationController)
 
 import MenuController from './menu_controller'
 application.register('menu', MenuController)
+
+import ResourceController from './resource_controller'
+application.register('resource', ResourceController)

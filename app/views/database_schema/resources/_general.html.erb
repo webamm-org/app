@@ -1,0 +1,100 @@
+<!-- Card Section -->
+<div class="max-w-5xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+  <!-- Card -->
+  <div class="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-neutral-900">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-neutral-200">
+        General configuration
+      </h2>
+      <p class="text-sm text-gray-600 dark:text-neutral-400">
+        Select which actions to enable
+      </p>
+    </div>
+
+      <!-- Section -->
+      <div class="py-6 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent">
+      <% if resource.errors.any? %>
+    <div class="rounded-md bg-red-50 p-4 mb-4">
+    <div class="flex">
+      <div class="flex-shrink-0">
+        <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="ml-3">
+        <h3 class="text-sm font-medium text-red-800">There were errors with your submission</h3>
+        <div class="mt-2 text-sm text-red-700">
+          <ul role="list" class="list-disc space-y-1 pl-5">
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+    <% end %>
+        <label for="af-payment-billing-contact" class="inline-block text-sm font-medium dark:text-white">
+          Enabled actions:
+        </label>
+
+        <div class="grid space-y-3 mt-5">
+          <div class="relative flex items-start">
+            <div class="flex items-center h-5 mt-1">
+              <input id="resource-index-options" name='resource[index_options][include]' type="checkbox" class="border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" data-resource-tab-param='resource-index-tab' data-action="change->resource#toggleOption" <%= resource.index_options.key?('include') ? 'checked' : '' %>>
+            </div>
+            <label for="hs-checkbox-delete" class="ms-3">
+              <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-300">Index</span>
+              <span id="hs-checkbox-delete-description" class="block text-sm text-gray-600 dark:text-neutral-500">List all records</span>
+            </label>
+          </div>
+
+          <div class="relative flex items-start">
+            <div class="flex items-center h-5 mt-1">
+              <input id="resource-show-options" name='resource[show_options][include]' type="checkbox" class="border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" data-resource-tab-param='resource-show-tab' data-action="change->resource#toggleOption" <%= resource.show_options.key?('include') ? 'checked' : '' %>>
+            </div>
+            <label for="hs-checkbox-archive" class="ms-3">
+              <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-300">Show</span>
+              <span id="hs-checkbox-archive-description" class="block text-sm text-gray-600 dark:text-neutral-500">Show a single record</span>
+            </label>
+          </div>
+
+          <div class="relative flex items-start">
+            <div class="flex items-center h-5 mt-1">
+              <input id="resource-create-options" name='resource[create_options][include]' type="checkbox" class="border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" data-resource-tab-param='resource-create-tab' data-action="change->resource#toggleOption" <%= resource.create_options.key?('include') ? 'checked' : '' %>>
+            </div>
+            <label for="hs-checkbox-archive" class="ms-3">
+              <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-300">Create</span>
+              <span id="hs-checkbox-archive-description" class="block text-sm text-gray-600 dark:text-neutral-500">Create a new record</span>
+            </label>
+          </div>
+
+          <div class="relative flex items-start">
+            <div class="flex items-center h-5 mt-1">
+              <input id="resource-update-options" name='resource[update_options][include]' type="checkbox" class="border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" data-resource-tab-param='resource-update-tab' data-action="change->resource#toggleOption" <%= resource.update_options.key?('include') ? 'checked' : '' %>>
+            </div>
+            <label for="hs-checkbox-archive" class="ms-3">
+              <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-300">Update</span>
+              <span id="hs-checkbox-archive-description" class="block text-sm text-gray-600 dark:text-neutral-500">Update a record</span>
+            </label>
+          </div>
+
+          <div class="relative flex items-start">
+            <div class="flex items-center h-5 mt-1">
+              <input id="resource-destroy-options" name='resource[destroy_options][include]' type="checkbox" class="border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" data-resource-tab-param='resource-destroy-tab' data-action="change->resource#toggleOption" <%= resource.destroy_options.key?('include') ? 'checked' : '' %>>
+            </div>
+            <label for="hs-checkbox-archive" class="ms-3">
+              <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-300">Destroy</span>
+              <span id="hs-checkbox-archive-description" class="block text-sm text-gray-600 dark:text-neutral-500">Delete a record</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    <div class="mt-5 flex justify-end gap-x-2">
+      <%= form.submit "Save changes", class: "py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" %>
+    </div>
+  </div>
+  <!-- End Card -->
+</div>
+<!-- End Card Section -->

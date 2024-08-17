@@ -1,0 +1,44 @@
+<div data-controller="resource">
+  <div class="mb-5 pb-5 flex justify-between items-center border-b border-gray-200 dark:border-neutral-700">
+    <div>
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-neutral-200">New resource for <%= @model.name %></h2>
+    </div>
+  </div>
+  <%= render "nav", resource: resource %>
+
+  <div class="mt-10">
+    <%= form_with(model: [plan, :database_schema, model, resource], data: { turbo: false }) do |form| %>
+      <div id="resource-general-form" class="resource-form-option">
+        <%= render "general", form: form, resource: resource %>
+      </div>
+      <div id="resource-index-form" class="hidden resource-form-option">
+        <p class="text-gray-500 dark:text-neutral-400">
+          <%= render 'index_action_form', form: form, models: models, columns: columns, resource: resource %>
+        </p>
+      </div>
+      <div id="resource-show-form" class="hidden resource-form-option">
+        <p class="text-gray-500 dark:text-neutral-400">
+          <%= render 'show_action_form', form: form, models: models, columns: columns, resource: resource %>
+        </p>
+      </div>
+
+      <div id="resource-create-form" class="hidden resource-form-option">
+        <p class="text-gray-500 dark:text-neutral-400">
+          <%= render 'create_action_form', form: form, models: models, resource: resource %>
+        </p>
+      </div>
+
+      <div id="resource-update-form" class="hidden resource-form-option">
+        <p class="text-gray-500 dark:text-neutral-400">
+          <%= render 'update_action_form', form: form, models: models, resource: resource %>
+        </p>
+      </div>
+
+      <div id="resource-destroy-form" class="hidden resource-form-option">
+        <p class="text-gray-500 dark:text-neutral-400">
+          <%= render 'destroy_action_form', form: form, models: models, resource: resource %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
