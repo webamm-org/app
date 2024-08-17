@@ -94,7 +94,7 @@ gem "anthropic", "~> 0.3.0"
 
 source "https://rubygems.pkg.github.com/rubypowerhouse" do
   gem "waml", "0.0.1"
-  gem "waml_to_rails", "0.1.0"
+  gem "waml_to_rails", "0.1.1"
 end
 
 gem 'rack-attack'

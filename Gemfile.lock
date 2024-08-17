@@ -404,7 +404,7 @@ GEM
   specs:
     waml (0.0.1)
       dry-struct (= 1.6.0)
-    waml_to_rails (0.1.0)
+    waml_to_rails (0.1.1)
       activesupport (= 7.2)
       dry-struct (= 1.6.0)
       rufo (= 0.18.0)
@@ -445,7 +445,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   waml (= 0.0.1)!
-  waml_to_rails (= 0.1.0)!
+  waml_to_rails (= 0.1.1)!
   web-console
 
 RUBY VERSION
