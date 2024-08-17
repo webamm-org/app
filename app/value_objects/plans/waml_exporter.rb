@@ -3,7 +3,8 @@ module Plans
     def self.call(plan)
       db_definition = {
         'relationships' => [],
-        'schema' => []
+        'schema' => [],
+        'crud' => []
       }
 
       plan.db_models.find_each do |model|
@@ -19,12 +20,17 @@ module Plans
         }
       end
 
+      plan.resources.each do |resource|
+        db_definition['crud'] << ::Plans::WamlExporters::DatabaseSchema::Resource.new(resource).to_waml
+      end
+
       {
         'database' => {
           # TODO: reflect other database types
           'engine' => 'postgresql',
           'relationships' => db_definition['relationships'],
-          'schema' => db_definition['schema']
+          'schema' => db_definition['schema'],
+          'crud' => db_definition['crud']
         },
         'authentication' => authentications
       }
