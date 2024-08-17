@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PlansController < ApplicationController
-  before_action :set_plan, only: %i[show edit update destroy start progress generate generate_app]
+  before_action :set_plan, only: %i[show edit update destroy start progress generate generate_app schema_resources create_schema_resource]
   before_action :authenticate_user!
 
   def index

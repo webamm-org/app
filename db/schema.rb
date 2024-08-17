@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_14_125114) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_17_051358) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -104,6 +104,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_14_125114) do
     t.index ["plan_id"], name: "index_prompts_histories_on_plan_id"
   end
 
+  create_table "resources", force: :cascade do |t|
+    t.uuid "database_schema_model_id", null: false
+    t.uuid "plan_id", null: false
+    t.jsonb "show_options", default: {}, null: false
+    t.jsonb "index_options", default: {}, null: false
+    t.jsonb "update_options", default: {}, null: false
+    t.jsonb "create_options", default: {}, null: false
+    t.jsonb "destroy_options", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["database_schema_model_id", "plan_id"], name: "index_resources_on_database_schema_model_id_and_plan_id", unique: true
+    t.index ["database_schema_model_id"], name: "index_resources_on_database_schema_model_id"
+    t.index ["plan_id"], name: "index_resources_on_plan_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "encrypted_password", null: false
@@ -141,4 +156,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_14_125114) do
   add_foreign_key "database_schema_models", "plans"
   add_foreign_key "plans", "users"
   add_foreign_key "prompts_histories", "plans"
+  add_foreign_key "resources", "database_schema_models"
+  add_foreign_key "resources", "plans"
 end

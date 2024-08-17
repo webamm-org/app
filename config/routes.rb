@@ -22,12 +22,14 @@ Rails.application.routes.draw do
     end
 
     resources :authentications, except: [:show]
+    resources :resources, only: [:index, :create]
 
     namespace :database_schema do
       resources :database_schema_models, path: 'models' do
         resources :database_schema_columns, path: 'columns', except: [:index]
         resources :database_schema_indices, path: 'indices', except: [:index, :update, :edit]
         resources :database_schema_associations, path: 'associations', except: [:index, :update, :edit]
+        resources :resources, except: [:show, :index]
       end
     end
   end
