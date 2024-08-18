@@ -17,3 +17,6 @@ application.register('menu', MenuController)
 
 import ResourceController from './resource_controller'
 application.register('resource', ResourceController)
+
+import AuthorizationController from './authorization_controller'
+application.register('authorization', AuthorizationController)

@@ -62,11 +62,11 @@ module DatabaseSchema
 
     def resource_params
       params.require(:resource).permit(
-        index_options: [:include, { authentication: [] }, { attributes: [] }],
-        show_options: [:include, { authentication: [] }, { attributes: [] }],
-        create_options: [:include, { authentication: [] }, { attributes: [] }],
-        update_options: [:include, { authentication: [] }, { attributes: [] }],
-        destroy_options: [:include, { authentication: [] }, { attributes: [] }],
+        index_options: [:include, { authentication: [] }, { attributes: [] }, { authorization: [] }],
+        show_options: [:include, { authentication: [] }, { attributes: [] }, { authorization: [] }],
+        create_options: [:include, { authentication: [] }, { attributes: [] }, { authorization: [] }],
+        update_options: [:include, { authentication: [] }, { attributes: [] }, { authorization: [] }],
+        destroy_options: [:include, { authentication: [] }, { attributes: [] }, { authorization: [] }],
       )
     end
   end

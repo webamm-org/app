@@ -13,30 +13,30 @@
       </div>
       <div id="resource-index-form" class="hidden resource-form-option">
         <p class="text-gray-500 dark:text-neutral-400">
-          <%= render 'index_action_form', form: form, models: models, columns: columns, resource: resource %>
+          <%= render 'index_action_form', form: form, models: models, columns: columns, resource: resource, plan: plan %>
         </p>
       </div>
       <div id="resource-show-form" class="hidden resource-form-option">
         <p class="text-gray-500 dark:text-neutral-400">
-          <%= render 'show_action_form', form: form, models: models, columns: columns, resource: resource %>
+          <%= render 'show_action_form', form: form, models: models, columns: columns, resource: resource, plan: plan %>
         </p>
       </div>
 
       <div id="resource-create-form" class="hidden resource-form-option">
         <p class="text-gray-500 dark:text-neutral-400">
-          <%= render 'create_action_form', form: form, models: models, resource: resource %>
+          <%= render 'create_action_form', form: form, models: models, resource: resource, plan: plan %>
         </p>
       </div>
 
       <div id="resource-update-form" class="hidden resource-form-option">
         <p class="text-gray-500 dark:text-neutral-400">
-          <%= render 'update_action_form', form: form, models: models, resource: resource %>
+          <%= render 'update_action_form', form: form, models: models, resource: resource, plan: plan %>
         </p>
       </div>
 
       <div id="resource-destroy-form" class="hidden resource-form-option">
         <p class="text-gray-500 dark:text-neutral-400">
-          <%= render 'destroy_action_form', form: form, models: models, resource: resource %>
+          <%= render 'destroy_action_form', form: form, models: models, resource: resource, plan: plan %>
         </p>
       </div>
     <% end %>
