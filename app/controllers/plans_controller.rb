@@ -66,7 +66,7 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-    params.require(:plan).permit(:name, :usd_rate)
+    params.require(:plan).permit(:name)
   end
 
   def set_plan
