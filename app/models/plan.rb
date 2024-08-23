@@ -10,7 +10,7 @@ class Plan < ApplicationRecord
   has_many :prompts_histories, dependent: :destroy
   has_many :resources
 
-  def to_waml
-    ::Plans::WamlExporter.call(self)
+  def to_webamm
+    ::Plans::WebammExporter.call(self)
   end
 end

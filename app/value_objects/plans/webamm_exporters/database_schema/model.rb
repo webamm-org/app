@@ -1,8 +1,8 @@
 module Plans
-  module WamlExporters
+  module WebammExporters
     module DatabaseSchema
       class Model
-        def self.to_waml(model)
+        def self.to_webamm(model)
           table_name = model.name.underscore.pluralize
           relationships = []
 
@@ -14,15 +14,15 @@ module Plans
           }
 
           model.indices.find_each do |index|
-            model_definition['indices'] << ::Plans::WamlExporters::DatabaseSchema::Index.to_waml(index)
+            model_definition['indices'] << ::Plans::WebammExporters::DatabaseSchema::Index.to_webamm(index)
           end
 
           model.columns.find_each do |column|
-            model_definition['columns'] << ::Plans::WamlExporters::DatabaseSchema::Column.to_waml(column)
+            model_definition['columns'] << ::Plans::WebammExporters::DatabaseSchema::Column.to_webamm(column)
           end
 
           model.associations.find_each do |association|
-            association_definition = ::Plans::WamlExporters::DatabaseSchema::Association.to_waml(table_name, association)
+            association_definition = ::Plans::WebammExporters::DatabaseSchema::Association.to_webamm(table_name, association)
             next if association_definition.nil?
 
             relationships << association_definition

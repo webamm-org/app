@@ -1,12 +1,12 @@
 module Plans
-  module WamlExporters
+  module WebammExporters
     module DatabaseSchema
       class Resource
         def initialize(resource)
           @resource = resource
         end
 
-        def to_waml
+        def to_webamm
           mappings = {
             'table' => resource_name,
             'actions' => []

@@ -1,8 +1,8 @@
 module Plans
-  module WamlExporters
+  module WebammExporters
     module DatabaseSchema
       class Index
-        def self.to_waml(index)
+        def self.to_webamm(index)
           column_names = index.columns.map(&:name)
 
           {

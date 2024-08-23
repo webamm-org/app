@@ -1,8 +1,8 @@
 module Plans
-  module WamlExporters
+  module WebammExporters
     module DatabaseSchema
       class Column
-        def self.to_waml(column)
+        def self.to_webamm(column)
           base_def = {
             'name' => column.name,
             'null' => column.can_be_null,

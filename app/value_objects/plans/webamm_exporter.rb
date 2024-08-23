@@ -1,5 +1,5 @@
 module Plans
-  class WamlExporter
+  class WebammExporter
     def self.call(plan)
       db_definition = {
         'relationships' => [],
@@ -8,7 +8,7 @@ module Plans
       }
 
       plan.db_models.find_each do |model|
-        model_definition, relationships = ::Plans::WamlExporters::DatabaseSchema::Model.to_waml(model)
+        model_definition, relationships = ::Plans::WebammExporters::DatabaseSchema::Model.to_webamm(model)
         db_definition['schema'] << model_definition
         db_definition['relationships'] |= relationships
       end
@@ -21,7 +21,7 @@ module Plans
       end
 
       plan.resources.each do |resource|
-        db_definition['crud'] << ::Plans::WamlExporters::DatabaseSchema::Resource.new(resource).to_waml
+        db_definition['crud'] << ::Plans::WebammExporters::DatabaseSchema::Resource.new(resource).to_webamm
       end
 
       {
