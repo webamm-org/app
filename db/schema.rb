@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_17_051358) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_23_141439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -75,22 +75,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_17_051358) do
     t.index ["plan_id"], name: "index_database_schema_models_on_plan_id"
   end
 
-  create_table "leads", force: :cascade do |t|
-    t.string "name"
-    t.string "email", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_leads_on_email", unique: true
-  end
-
   create_table "plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "ai_enabled", default: false
-    t.integer "usd_rate", default: 0
-    t.boolean "started", default: false
     t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
@@ -139,7 +128,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_17_051358) do
     t.string "invited_by_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "ai_enabled", default: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "idx_users_email", unique: true
     t.index ["invitation_token"], name: "idx_users_invitation_token", unique: true
     t.index ["reset_password_token"], name: "idx_users_reset_password_token", unique: true

@@ -1,8 +1,8 @@
 module Plans
-  module WamlExporters
+  module WebammExporters
     module DatabaseSchema
       class Association
-        def self.to_waml(table_name, association)
+        def self.to_webamm(table_name, association)
           base_def = {
             'type' => association.connection_type.gsub('_assoc', ''),
             'required' => !association.connection_options.key?('optional'),

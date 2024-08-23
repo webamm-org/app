@@ -82,21 +82,13 @@ gem 'ffaker', '~> 2.23', groups: %i[development test]
 
 gem 'devise', '~> 4.9'
 
-gem 'devise_invitable', '~> 2.0'
-
 gem 'letter_opener_web', '~> 3.0', group: :development
 
 gem 'rubocop', '~> 1.65'
 
 gem "jsbundling-rails", "~> 1.3"
 
-gem "anthropic", "~> 0.3.0"
-
 gem "webamm", "0.0.1"
 gem "webamm_to_rails", "7.0.0"
 
 gem 'rack-attack'
-
-gem "ruby-openai", "~> 7.1"
-
-gem "gemini-ai", "~> 4.2"
