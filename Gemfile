@@ -92,3 +92,4 @@ gem "webamm", "0.0.1"
 gem "webamm_to_rails", "7.0.0"
 
 gem 'rack-attack'
+gem "stackprof"
