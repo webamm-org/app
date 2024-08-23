@@ -13,11 +13,8 @@ Rails.application.routes.draw do
 
   resources :plans do
     member do
-      get :start
-      post :progress
-      post :generate
-      get :generate_app
       get :authorization_options
+      get :generate_app
     end
 
     resources :authentications, except: [:show]

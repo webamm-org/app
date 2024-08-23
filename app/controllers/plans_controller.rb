@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PlansController < ApplicationController
-  before_action :set_plan, only: %i[show edit update destroy start progress generate generate_app authorization_options]
+  before_action :set_plan, only: %i[show edit update destroy generate_app authorization_options]
   before_action :authenticate_user!
 
   layout false, only: :authorization_options
@@ -18,7 +18,7 @@ class PlansController < ApplicationController
     @plan = current_user.plans.new(plan_params)
 
     if @plan.save
-      redirect_to start_plan_path(@plan)
+      redirect_to plan_database_schema_database_schema_models_path(@plan)
     else
       render :new, status: :unprocessable_entity
     end
@@ -52,29 +52,6 @@ class PlansController < ApplicationController
     redirect_to :plans, notice: 'Plan was successfully destroyed.'
   end
 
-  def start
-    if @plan.started || !current_user.ai_enabled
-      redirect_to plan_database_schema_database_schema_models_path(@plan)
-    end
-  end
-
-  def progress
-    @plan.update!(started: true)
-
-    redirect_to plan_database_schema_database_schema_models_path(@plan)
-  end
-
-  def generate
-    ::Plans::BootstrapWithAi.new(@plan, params[:prompt]).call
-    @plan.update!(started: true)
-
-    redirect_to plan_database_schema_database_schema_models_path(@plan), notice: 'Plan was successfully generated.'
-  end
-
-  def generate_app
-  
-  end
-
   def authorization_options
     model_ids_raw = params.fetch(:model_ids, '')
     model_ids = model_ids_raw.split(',')
@@ -83,6 +60,8 @@ class PlansController < ApplicationController
     @action_name = params.fetch(:action_name)
     @selected_options = params.fetch(:selected_options, '').split(',')
   end
+
+  def generate_app; end
 
   private
 
