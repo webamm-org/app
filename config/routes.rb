@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  resources :leads, path: 'subscribers', only: [:create, :new, :index]
-
   namespace :api do
     namespace :v1 do
       resources :plans, only: [:show]
