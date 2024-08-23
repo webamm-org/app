@@ -40,6 +40,10 @@ module DatabaseSchema
           index.destroy!
         end
 
+        if @column.field_type == 'enum_column'
+
+        end
+
         @column.destroy!
       end
 

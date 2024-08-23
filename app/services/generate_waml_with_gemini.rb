@@ -1,7 +1,7 @@
 require 'json'
 require 'gemini-ai'
 
-class GenerateWamlWithGemini
+class GenerateWebammWithGemini
   def self.call(prompt)
     client = ::Gemini.new(
       credentials: {

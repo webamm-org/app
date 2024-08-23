@@ -1,6 +1,6 @@
 module Plans
   class BootstrapWithAi
-    InvalidWaml = Class.new(StandardError)
+    InvalidWebamm = Class.new(StandardError)
     CreationFailed = Class.new(StandardError)
 
     def initialize(plan, application_description)
@@ -10,7 +10,7 @@ module Plans
 
     def call
       begin
-        waml_application = ::Waml::Definition.new(waml_json.deep_symbolize_keys)
+        waml_application = ::Webamm::Definition.new(waml_json.deep_symbolize_keys)
 
         ActiveRecord::Base.transaction do
           # Create models, columns, and indices
@@ -69,7 +69,7 @@ module Plans
           llm_waml: waml_json.to_json
         )
 
-        raise InvalidWaml
+        raise InvalidWebamm
       rescue => e
         puts e.backtrace.inspect
         @plan.prompts_histories.create!(
@@ -87,7 +87,7 @@ module Plans
     private
 
     def waml_json
-      @waml_json ||= ::GenerateWamlWithClaude.call(@application_description)
+      @waml_json ||= ::GenerateWebammWithClaude.call(@application_description)
     end
   end
 end

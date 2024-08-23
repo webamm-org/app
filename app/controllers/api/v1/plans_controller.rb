@@ -5,7 +5,7 @@ module Api
         plan = Plan.find_by(id: params[:id])
 
         if plan.present?
-          files = ::WamlToRails.generate(plan.to_waml)
+          files = ::WebammToRails.generate(plan.to_waml)
 
           render json: files, status: :ok
         else

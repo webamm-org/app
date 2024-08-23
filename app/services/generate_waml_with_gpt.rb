@@ -1,6 +1,6 @@
 require 'json'
 
-class GenerateWamlWithGpt
+class GenerateWebammWithGpt
   def self.call(prompt)
     client = OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY'])
 

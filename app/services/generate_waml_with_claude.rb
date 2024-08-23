@@ -1,6 +1,6 @@
 require 'json'
 
-class GenerateWamlWithClaude
+class GenerateWebammWithClaude
   def self.call(prompt)
     client = ::Anthropic::Client.new(access_token: ENV['ANTHROPIC_API_KEY'])
 
