@@ -82,8 +82,6 @@ gem 'ffaker', '~> 2.23', groups: %i[development test]
 
 gem 'devise', '~> 4.9'
 
-gem 'devise_invitable', '~> 2.0'
-
 gem 'letter_opener_web', '~> 3.0', group: :development
 
 gem 'rubocop', '~> 1.65'
