@@ -89,7 +89,7 @@ gem 'rubocop', '~> 1.65'
 gem "jsbundling-rails", "~> 1.3"
 
 gem "webamm", "0.0.2"
-gem "webamm_to_rails", "7.0.0"
+gem "webamm_to_rails", "7.0.1"
 
 gem 'rack-attack'
 gem "stackprof"
